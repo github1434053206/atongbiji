@@ -1,0 +1,49 @@
+
+	3、创建项目   必须cd到对应的一个项目里面
+			
+		vue init webpack vue-demo01
+
+		cd  vue-demo01 
+		
+		cnpm install   /  npm install          如果创建项目的时候没有报错，这一步可以省略。如果报错了  cd到项目里面运行  cnpm install   /  npm install
+		
+		npm run dev
+
+
+	
+	4、另一种创建项目的方式   （推荐）  ***
+		
+
+		vue init webpack-simple vuedemo02
+
+		cd  vuedemo02
+		
+		cnpm install   /  npm install        
+		
+		npm run dev
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

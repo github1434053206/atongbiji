@@ -1,0 +1,20 @@
+快捷键
+https://blog.csdn.net/qq_35620807/article/details/51933831
+
+2.class可以用多个，在css写class，相当于类，如r_float{float:right}，可以附加给一个标签，一个标签的class可以加两个，class:"r_float r_left"
+
+3.iscroll插件为滚动插件
+
+4.响应式原理，通过css3的media query
+
+5.排行查询：https://www.awesomes.cn/repos
+
+6.全屏滚动插件 fullPage.js  http://www.jq22.com/jquery-info1124
+
+7.妹子UI框架
+
+8.normalize.css
+
+10.swiper https://www.swiper.com.cn/
+
+11. zepto

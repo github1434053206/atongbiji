@@ -1,0 +1,109 @@
+查看LINUX版本
+lsb_release -a
+
+WINDOW定时关机
+shutdown -s -t 1800
+
+导入包
+ALT+ENTER
+
+查找文件路径
+find / -name w.txt
+
+杀死进程
+kill -9 进程号（用jps查看）
+
+IT行业的学习方法就是不断的记录
+比如记录在TXT文件中，每一个框架知识点
+
+进入其他服务器
+ssh 192.168.9.5
+
+查看时间
+date
+
+shell远程复制
+for i in {5..8};do scp -r spark-env.sh 192.168.9.$i:$PWD ; done  
+
+免密登录
+ssh-keygen
+ssh-copy-id 192.168.9.4
+
+远程复制
+scp -r zookeeper-3.4.6/ 192.168.9.5:$PWD 
+
+VM黑屏WINDOWS重置
+netsh winsock reset 
+
+启动命令hdfs
+start-dfs.sh 
+
+启动命令yarn
+start-yarn.sh
+
+启动yarn
+sbin/yarn-daemon.sh start nodemanager
+
+解压
+tar -zxvf hbase-1.2.1-bin.tar.gz -C apps/ 
+
+将时间写在硬件中
+hwclock -w 
+
+改变系统时间
+date -s '2017-09-17 19:30:26' 
+
+查看端口号
+ps -ef|grep dazhuiba.sh
+
+类似删掉后台
+jobs ,fg 1 
+
+端口监听
+netstat -nltp 
+
+进程查看
+ps -ef|grep dazhuiba.sh
+
+查看内存
+free -m 
+
+类名千万别和架包的名相同
+
+properties
+
+ALT+P打开sftp
+
+ALT+/补全NEW左边的代码
+
+在LINUX用hadoop打开java文件
+hadoop jar mapreduce27-0.0.1-SNAPSHOT.jar mapreduce2.Jobb2
+
+用于局部聚合
+combiner
+
+用于数据划分，不同数据放在不同的reduce中
+Partitioner类
+
+intwritable,Text...都有set类型
+
+安装
+rpm  -ivh MySQL-server-5.6.26-1.linux_glibc2.5.x86_64.rpm 
+
+下载
+yum install -y perl.x86_64
+
+改YUM源
+mount -t iso9660 -o loop /dev/cdrom /mnt/cdrom 
+
+启动mysql
+service mysql start
+
+mysql -uroot -proot启动
+
+进程命令
+jps
+ps
+
+查看路径
+which

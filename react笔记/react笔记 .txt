@@ -1,0 +1,507 @@
+react
+antdesign:ui框架，阿里团队推出，比较适合react
+
+
+00.props 是从外部传进组件的参数，主要是父组件向子组件传递数据。
+props 对于使用它的组件来说是只读的。要想修改props，必须通过父组件修改。所以子组件的props 通常是父组件的state。
+
+0. postComment = () => {}与postComment(){}区别
+postComment = () => {}的this直接指向实例实例对象
+
+
+
+01.首页模板jsx
+iimport React from 'react'
+import Home from './com/Home.jsx'
+import Movie from './com/Movie.jsx'
+import { HashRouter as Router, Route, Link } from "react-router-dom";
+
+
+export default class App extends React.Component{
+    constructor(props) {
+      super(props)
+      this.state = {
+        
+      }
+    }
+
+    componentWillReceiveProps(newProps){
+    
+    }
+
+    render(){
+      return <Router>4wer5````
+      <div>
+      <span>我是首页app</span>
+      </div>
+      <Link to="/home">家</Link>
+      &nbsp;
+      <Link to="/movie">电影</Link>
+      &nbsp;
+      <Link to="/movie/top/145">第145部电影</Link>
+
+      <Route exact component={Home} path="/home"></Route>
+      <Route exact component={Movie} path="/movie"></Route>
+      <Route exact component={Movie} path="/movie/:type/:id"></Route>
+      </Router>
+    }
+  }
+
+
+
+
+
+1.webapp的意思是基于浏览器的APP，就是功能复杂的移动端网站
+
+2.nativeAPP的意思是原生APP
+
+3.hybirdAPP的意思是混合APP
+
+4.js是解析执行，解析一行执行一行，一行一行解析，需要先运行才能知道错误
+
+5.java是编译执行，先预编译全个文件，不用运行就知道错误，.java->.class
+
+6.混合APP开发环境
+HTML5+    --dcloud
+weex
+ReactNative
+
+
+7.typescript是js的超集，可以强类型，类似js
+
+
+8.虚拟dom ：js生成的dom
+
+9.虚拟DOM的本质是用js操作html和css
+
+
+10.js列表排序的方法(ul-li)
+拿到新和旧得dom树，找到需要修改的元素即可，然后渲染部分元素
+获取DOM树，需要用Js创建一个对象，用这个对象模拟DOM节点
+
+11.虚拟DOM的本质：就是使用js对象模拟dom树
+虚拟DOM的作用：为了实现DOM节点的高效更新，就像js列表排序（ul-li）
+
+
+12.react已经在内部实现了虚拟dom
+
+
+
+13.diff算法：查找差异算法
+tree diff：虚拟DOM的对比
+component diff：在对比每一层的时候，组件之间的对比
+element diff：每个元素对比
+key:vue中v-for的key
+
+
+
+14.react基本用法
+看day3.md
+
+
+15.react提供了一套jsx语法规范，能够用js写类似于html的代码，快速定义虚拟dom
+
+
+16.使用jsx指南
+看day3.md
+
+17.react中{}放js代码
+
+
+19.react组件
+看day3.md
+
+
+20.     ...object语法，表示把这个对象上的所有属性展开了，放到里面
+
+
+
+21.react的类
+看day3.md
+
+22.react--------可用ES6中的CLASS创建组件,class自带props属性
+
+
+
+23.使用es6中的class创建组件
+Hello2.jsx
+import React from 'react'
+export default class Hello2 extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      msg: '这是 Hello2 组件的私有msg数据',
+      info: '瓦塔西***'
+    }
+  }
+  render() {
+    return <div>
+      <h1>这是 使用 class 类创建的组件</h1>
+      <h3>外界传递过来的数据是： {this.props.address}</h3>
+      <h5>{this.state.msg}</h5>
+    </div>
+  }
+}
+
+
+main.js
+import Hello from './components/Hello2.jsx'
+ReactDOM.render(<Hello address="myaddress"></Hello>, document.getElementById('app'))
+
+
+
+
+
+24.this.state = {} 就像vue中的data
+
+
+
+
+25.在react中引入css
+index.css
+h3{
+  font-size: 100px;
+}
+
+
+.ioi{
+  font-size: 5px;
+}
+
+
+
+Hello2.jsx
+import React from 'react'
+import Rdcss from '../css/index.css'
+export default class Hello2 extends React.Component {
+  constructor(props) {
+    super(props)
+
+    //this.state类似于vue中的data
+    this.state = {
+      msg: '这是 Hello2 组件的私有msg数据',
+      info: '瓦塔西***'
+    }
+  }
+  render() {
+    return <div>
+      <h1 className="ioi">这是 使用 class 类创建的组件</h1>
+      <h3>外界传递过来的数据是： {this.props.address}</h3>
+      <h5>{this.state.msg}</h5>
+    </div>
+  }
+}
+
+
+
+
+
+
+26.constructor为react类中的构造函数
+
+
+
+27.虚拟DOM是在render函数中创建的
+
+
+28.props参数为外部传入的参数，在构造函数constructor中的第一个参数
+
+
+
+29.render和state是react中很重要的两个关键词
+
+
+30.给组件设置默认属性
+看day4.md
+
+
+
+31.给属性进行类型校验
+看day4.md
+
+
+
+
+32.react中的componentWillMount相当于vue中的created
+
+
+
+33.render()是渲染内存中的虚拟dom
+
+
+33. componentDidMount组件渲染完成，相当于vue中的mounted
+
+
+
+
+34.  oop=()=>{
+      this.setState({
+        count: this.state.count+1
+      })
+  }
+相当于小程序的加一操作后，自动传到view上面(显示)
+
+
+
+
+
+
+
+35.shouldComponentUpdate(newProps,newState){
+    return true
+  }
+shouldComponentUpdate是运行时的生命周期函数，当state改变时，当return为false的时候则页面不会更新，但state状态会被修改,如果是true则页面也会修改,newProps为最新的Props，newState为最新的State
+
+
+
+36.ref代替document.getElementById()，和vue一样
+<h4 ref="h4">当前值： {this.state.count}</h4>
+console.log(this.refs.h4.innerHTML)
+
+
+37. componentWillUpdate(){
+      // console.log(this.state.count)
+      console.log(this.refs.h4.innerHTML)
+    }
+componentWillUpdate()是生命周期函数，是允许改变后的，第一个生命周期函数，下一步就是render
+
+
+38.render是渲染的生命周期函数
+
+
+39.console.log(this.refs.h4 && this.refs.h4.innerHTML)
+在组件运行阶段中，每当调用render函数的时候，页面上的DOM元素，还是之前旧的
+
+
+
+40.componentDidUpdate(){
+      console.log(this.refs.h4.innerHTML)
+    }
+运行期生命周期函数中为render之后的函数，这个this.refs.h4.innerHTML是新的
+
+
+41. componentWillReceiveProps(newProps){
+      console.log("props改变了旧值"+this.props.chi_count)
+      console.log("props改变了新值"+newProps.chi_count)
+    }
+生命周期函数componentWillReceiveProps，代表props改变了，如：父组件传给子组件的props，当父组件点击按钮改变子组件props的时候，子组件的props也会改变，则会触发这个函数，第一个参数为新的值
+
+
+
+
+
+
+
+42. <input type="button" value="+" onClick={this.oop.bind(this，‘a’,'v')}/>
+bind的作用是修改函数内部的this
+
+oop(a,b){
+    console.log("qqq"+a+b)
+    console.log(this)
+      this.setState({
+        count: this.state.count+1
+      })
+      // console.log(this.state.count)
+  }
+
+
+
+
+43.使用bind,在构造函数上加this.oop=this.oop.bind(this,'ww','ee')
+
+
+
+44.react是单向数据绑定，没有vue中的v-model双向数据绑定，react只能从state传到view上面
+
+
+
+
+45. {/* 注意：如果为 表单元素，提供了 value 属性绑定，那么，必须同时为 表单元素 绑定 readOnly, 或者提供要给 onChange 事件 */}
+      {/* 如果提供了readOnly，表示这个元素只读的不能被修改  */}
+      {/* 如果提供了onChange 表示，这个元素的值可以被修改，但是，要自己定义修改的逻辑  */}
+
+使用 事件对象的 参数 e 来拿   e.target 就表示触发 这个事件的 事件源对象，得到的是一个原生的JS DOM 对象
+
+      <input type="text" value={this.state.count} onChange={this.txtChanged} ref="txt"/>
+
+
+txtChanged=(e)=>{
+      this.setState({
+        count: e.target.value
+      })
+    }
+
+
+46.react路由学习网站
+https://reacttraining.com/react-router/web/guides/quick-start
+
+
+
+47.引入react路由包
+cnpm install react-router-dom -S
+
+
+48.{this.props.match.params.type}为获取路由传过来的参数值
+
+<Route exact component={Movie} path="/movie/:type/:id"></Route>
+
+
+二：
+1.webapp的意思是基于浏览器的APP，就是功能复杂的移动端网站
+
+2.nativeAPP的意思是原生APP
+
+3.hybirdAPP的意思是混合APP
+
+4.js是解析执行，解析一行执行一行，一行一行解析，需要先运行才能知道错误
+
+5.java是编译执行，先预编译全个文件，不用运行就知道错误，.java->.class
+
+6.混合APP开发环境
+HTML5+    --dcloud
+weex
+ReactNative
+
+
+7.typescript是js的超集，可以强类型，类似js
+
+
+8.虚拟dom ：不是由浏览器挺，程序员模拟实现的
+
+9.DOM的本质是用js操作html和css
+
+
+10.js列表排序的方法(ul-li)
+拿到新和旧得dom树，找到需要修改的元素即可，然后渲染部分元素
+获取DOM树，需要用Js创建一个对象，用这个对象模拟DOM节点
+
+11.虚拟DOM的本质：就是使用js对象模拟dom树
+虚拟DOM的作用：为了实现DOM节点的高效更新，就像js列表排序（ul-li）
+
+
+12.react已经在内部实现了虚拟dom
+
+
+
+13.diff算法：查找差异算法
+tree diff：虚拟DOM的对比
+component diff：在对比每一层的时候，组件之间的对比
+element diff：每个元素对比
+key:vue中v-for的key
+
+
+
+14.react基本用法
+看day3.md
+
+
+15.react提供了一套jsx语法规范，能够用js写类似于html的代码，快速定义虚拟dom
+
+
+16.使用jsx指南
+看day3.md
+
+17.react中{}放js代码
+
+
+19.react组件
+看day3.md
+
+
+20.     ...object语法，表示把这个对象上的所有属性展开了，放到里面
+
+
+
+21.react的类
+看day3.md
+
+22.react--------可用ES6中的CLASS创建组件,class自带props属性
+
+
+
+23.使用es6中的class创建组件
+Hello2.jsx
+import React from 'react'
+export default class Hello2 extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      msg: '这是 Hello2 组件的私有msg数据',
+      info: '瓦塔西***'
+    }
+  }
+  render() {
+    return <div>
+      <h1>这是 使用 class 类创建的组件</h1>
+      <h3>外界传递过来的数据是： {this.props.address}</h3>
+      <h5>{this.state.msg}</h5>
+    </div>
+  }
+}
+
+
+main.js
+import Hello from './components/Hello2.jsx'
+ReactDOM.render(<Hello address="myaddress"></Hello>, document.getElementById('app'))
+
+
+
+
+
+24.this.state = {} 就像vue中的data
+
+
+
+
+25.在react中引入css
+index.css
+h3{
+  font-size: 100px;
+}
+
+
+.ioi{
+  font-size: 5px;
+}
+
+
+
+Hello2.jsx
+import React from 'react'
+import Rdcss from '../css/index.css'
+export default class Hello2 extends React.Component {
+  constructor(props) {
+    super(props)
+
+    //this.state类似于vue中的data
+    this.state = {
+      msg: '这是 Hello2 组件的私有msg数据',
+      info: '瓦塔西***'
+    }
+  }
+  render() {
+    return <div>
+      <h1 className="ioi">这是 使用 class 类创建的组件</h1>
+      <h3>外界传递过来的数据是： {this.props.address}</h3>
+      <h5>{this.state.msg}</h5>
+    </div>
+  }
+}
+
+
+
+
+
+
+26.constructor为react类中的构造函数
+
+
+
+27.虚拟DOM是在render函数中创建的
+
+
+28.props参数为外部传入的参数，在构造函数constructor中的第一个参数
+
+
+
+29.render和state是react中很重要的两个关键词

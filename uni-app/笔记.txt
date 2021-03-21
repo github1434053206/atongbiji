@@ -1,0 +1,40 @@
+1.视频教程
+https://www.bilibili.com/video/av48272338?from=search&seid=5087137190985879891
+
+1.使用步骤
+下载微信开发者平台
+下载HBUILDERX www.dcloud.io/hbuilderx.html
+
+2.在IOS上运行
+https://www.cnblogs.com/yunsun/p/11506444.html
+
+3.在夜神模拟器上运行
+https://blog.csdn.net/weixin_43968043/article/details/86579020
+
+4.目录结构
+pages:业务页面文件存放目录
+components：组件文件存放目录
+static:静态资源
+unpackage:编译的临时文件目录
+APP.VUE:应用配置，用来配置APP全局样式以及监听应用的生命周期
+main.js:vue初始化入口文件
+manifest.json:打包信息，appid,logo,版本
+pages.json:配置页面路由，导航条，选项卡等页面类信息
+
+5.删掉顶部栏
+https://www.cnblogs.com/xieyao/p/11346075.html
+
+6.生命周期
+https://www.jianshu.com/p/b481b6c23cdd
+
+7.参数传递
+https://blog.csdn.net/wwf1225/article/details/90693854
+
+8.加了"app-plus": {"titleNView": false} 遇到的问题
+https://blog.csdn.net/qq_36770615/article/details/90973456
+
+9.uni-app 里的#ifdef MP是什么意思？条件编译
+https://blog.csdn.net/weixin_39644462/article/details/97821783
+
+10.获取元素节点信息
+https://www.jianshu.com/p/7132301dd442

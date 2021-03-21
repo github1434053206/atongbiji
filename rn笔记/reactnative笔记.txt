@@ -1,0 +1,255 @@
+0.运行`react-native init AwesomeProject`创建React-Native项目
+
+
+00.运行`react-native run-android`打包编译安卓项目，并部署到模拟器或开发机中
+
+
+1.rn的div,p都不能用，因为那是浏览器的组件，需要换一种组件
+
+
+2.命令adb devices查看是否有连接设备
+
+
+3.react-native start 为重新启动命令
+
+
+4.最简单的rn的demo
+Myhome.js
+// 在 RN 中只能使用 .js 作为 组件的后缀名，不能使用 .jsx
+import React, { Component } from 'react'
+
+// View 组件负责布局，就好比 网页中的 div 元素
+import { View, Text } from 'react-native'
+
+export default class MyHomePage extends Component {
+  // constructor 一般也推荐都写出来
+  constructor(props) {
+    super(props)
+    this.state = {}
+  }
+
+  // 必须有 render 函数
+  render() {
+    // 1, 在 RN 中，不能使用 网页中的 所有标签，像 div ， p  ,  img不能用
+    // 2. 如果想要实现布局， RN 提供了  View 的组件，来实现布局；RN 提供了一系列基础的组件，来方便程序员的开发，如果想要使用这些组件，只需  按需 把 组件 从 'react-native' 中导入即可
+    return <View>
+      {/* 在 RN 中，所有的文本，必须使用 RN 提供的 Text 组件进行包裹；否则会报错 */}
+      <Text>123456~~2~~~</Text>
+    </View>
+  }
+}
+
+
+
+
+index.js
+import {AppRegistry} from 'react-native';
+import App from './App';
+import {name as appName} from './app.json';
+
+
+// 导入自己的组件页面
+import Myhome from './Myhome.js'
+
+
+// 当使用 AppRegistry 注册项目的时候，方法中的第一个参数，不要改，否则项目就废了
+// 第二个参数，表示要把哪个页面注册为项目的首页
+AppRegistry.registerComponent(appName, () => Myhome);
+
+
+
+
+
+
+
+
+
+
+
+5.ScrollView, // 滚动组件（默认，如果一个RN的页面非常长，超出了屏幕高度，这时候，不会像网页中那样自动提供滚动条，如果需要让页面实现滚动的话，需要使用 ScrollView 把页面包裹起来）
+
+
+
+6.基础模板
+
+import React, {Fragment} from 'react';
+import {
+  SafeAreaView,
+  StyleSheet,
+  ScrollView,
+  View,
+  Text,
+  StatusBar,
+  Image,
+  Button,
+} from 'react-native';
+
+import {
+  Header,
+  LearnMoreLinks,
+  Colors,
+  DebugInstructions,
+  ReloadInstructions,
+} from 'react-native/Libraries/NewAppScreen';
+
+const App = () => {
+  return (
+    <Fragment >
+      <ScrollView style={styles.bigwidth}>
+      <Text>
+      大家伙
+      </Text>
+
+      <Image 
+      source={require('./images/1.jpg')}>
+      </Image>
+
+      <Image 
+      source={{ uri: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=358796479,4085336161&fm=200&gp=0.jpg' }} 
+      style={styles.icss1}>
+      </Image>
+
+      <Button title="这是一个按钮" onPress={() => { console.warn('123') }}></Button>
+      </ScrollView>
+    </Fragment>
+  );
+};
+
+const styles = StyleSheet.create({
+  icss1:{
+    width: '100%',
+    height: 1600
+  },
+  bigwidth:{
+    width: '100%'
+  }
+});
+
+export default App;
+
+
+
+
+
+
+1.rn底部通栏
+1.1 yarn add react-native-tab-navigator
+
+1.2// 导入 Tabbar 相关的组件
+import TabNavigator from 'react-native-tab-navigator'
+
+
+1.3创建Home.js组件
+import React, { Component } from 'react'
+import { View,Text } from 'react-native'
+
+export default class Home extends Component {
+  render() {
+    return<View>
+      <Text>我是Home</Text>
+    </View>
+  }
+}
+
+
+1.4// 导入 Tab 栏的组件
+import Home from './components/tabbars/Home.js'
+
+
+1.5 导入
+ <TabNavigator>
+
+          {/* 主页的 Tab栏 */}
+          <TabNavigator.Item
+            selected={this.state.selectedTab === 'home'} // 判断当前的 tab栏是否被选中的
+            title="主页" // 表示 tabbar 上展示的内容
+            // renderIcon={() => <Icon name="home" size={25} color="gray" />} // 未选中状态下，展示的图标
+            // renderSelectedIcon={() => <Icon name="home" size={25} color="#0079FF" />} // 选中状态下展示的图标
+            onPress={() => this.setState({ selectedTab: 'home' })} // 点击Tab栏的操作
+          >
+            <Home></Home>
+          </TabNavigator.Item>
+</TabNavigator>
+
+
+
+
+
+
+2.配底部通栏的图标
+看视频
+https://www.bilibili.com/video/av65033946/?p=12
+https://www.bilibili.com/video/av65033946/?p=13
+
+3.轮播图
+https://www.bilibili.com/video/av65033946/?p=14
+ <View style={{ height: 220 }}>
+        <Swiper style={styles.wrapper} showsButtons={true} autoplay={true} loop={true}>
+
+          {this.state.lunbotu.map((item, i) => {
+            return <View key={i}>
+              <Image source={{ uri: item.image }} style={{ width: '100%', height: '100%' }}></Image>
+            </View>
+          })}
+
+        </Swiper>
+      </View>
+
+4.rn传参,fetch函数类似于ajax，axios
+componentWillMount() {
+      fetch('https://locally.uieee.com/slides')
+        .then(res => res.json())
+        .then(data => {
+          // console.warn(JSON.stringify(data[1].image, null, '  '))
+          this.setState({
+            lunbotu: data
+          })
+        })
+    }
+
+
+
+
+5.rn中用数组的map，类似于vue的v-for
+
+
+6. 在 RN 中，默认，就已经为 所有的 View 启用了弹性和模型，同时，默认的主轴是 纵向的
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+
+
+
+
+
+7.路由封装
+7.1yarn add react-native-router-flux
+
+7.2 创Main.js,项目根组件
+
+7.3引入import { Router, Stack, Scene } from 'react-native-router-flux'
+
+7.4写
+Router sceneStyle={{ backgroundColor: 'white' }}>
+      <Stack key="root">
+        {/* 配置路由规则 */}
+        {/* 注意，所有的路由规则，都应该写到这个位置 */}
+        {/* 第一个 Scene 就是默认要展示的首页 */}
+        {/* key 属性，表示路由的规则名称，将来可以使用这个 key ，进行编程式导航，每一个路由规则，都应该提供一个 唯一的key， key不能重复 */}
+        <Scene key="app" component={App} title="" hideNavBar={true} />
+        {/* 电影列表的路由规则 */}
+        {/* <Scene key="movielist" component={MovieList} title="热映电影列表" />
+        <Scene key="moviedetail" component={MovieDetail} title="电影详情" /> */}
+      </Stack>
+    </Router>
+
+7.5修改Index.js
+AppRegistry.registerComponent(appName, () => Main);
+
+
+
+
+8.路由跳转
+https://www.bilibili.com/video/av65033946/?p=17
+
+
+9.获取电影列表
+https://www.bilibili.com/video/av65033946/?p=18

@@ -1,0 +1,527 @@
+0.1小程序操作节点
+https://www.jianshu.com/p/9a80fbf97636
+https://www.cnblogs.com/lilicat/p/10782023.html
+
+0.应该经常封装css
+
+
+1.如何下载微信开发者工具
+https://jingyan.baidu.com/article/335530dacbe4c419ca41c37b.html
+注意：下载之后要加后缀名.exe才可以使用
+
+
+2.微信小程序分为四部分
+1.WXML(结构)
+2.WXSS（样式）（增加rpx(响应式像素),样式导入）
+3.JS（行为）（没有DOM和BOM的概念，新增wx对象为小程序顶级对象）
+4.*.JSON（配置）（非常严格的JSON格式）
+
+
+3.WXML常用标签
+1.<text>文字
+2.<image>图片
+3.<navigator>超链接
+4.<view>布局 （类似div）
+
+
+4.rpx是响应式高度（可以根据屏幕宽度进行自适应），假设设定宽为100%，对应的rpx为这张图片的实际（绝对）高度
+
+
+5.根目录下，app.js为全局逻辑，app.json全局配置，app.wxss样式
+
+
+6.css-
+flex布局的菜单栏
+.wxml_ul相当于ul,.nav-item相当于li
+
+.wxml_ul{
+  /* 设置为弹性布局 */
+  display: flex;
+  /* 拆行 */
+  flex-wrap: wrap;
+  /* 行居中对齐，如果设置为flex-end则右对齐 */
+  justify-content: center;
+}
+
+.nav-item{
+  width: 33.333%;
+  height: 150rpx;
+  border: 1px solid #ccc;
+  /* 设置CSS的box-sizing属性值为“border-box”，这样就会把borders和padding全都包含在定义的宽高里面。 */
+  box-sizing: border-box;
+  display: flex;
+  /* 设置 <div> 元素内弹性盒元素的方向为相反的顺序：，column	灵活的项目将垂直显示，正如一个列一样。 */
+  flex-direction: column;
+  /* 表示在Y轴上居中 */
+  align-items: center;
+}
+
+
+7.css-
+解决边框重叠问题
+方法1：
+.nav-item为li
+
+border-bottom: 1rpx solid #ccc;
+  border-right: 1rpx solid #ccc;
+
+.nav-item:nth-child(3n){
+  border-right: 0 none;
+}
+方法2：
+
+
+8.微信开发者工具里面有个开发者文档，有详细资料查看
+
+
+9.传输图片防止图片变形
+image里面的Mode属性 = aspectFill
+
+
+10.保证传入图片与显示图片同大小方法
+观察原图的x/y=x1/y1
+
+
+11.arkman用来设计图片
+
+
+12.app.wxss为全局css
+
+
+13.设置间隙背景颜色，可以在全局设置，也可以弄一个特定的css-class，在特定的位置上面加上<view class="css-class">
+
+
+14.box-shadow设置阴影效果
+
+
+15.css中的class可封装,oocss为面向对象编程css，多点用class封装
+
+
+16.伪元素：增加的元素，如：：after
+
+
+17.开发者文档-组件-swiper轮播图
+
+
+18.微信小程序开发快捷键：https://www.jianshu.com/p/32e50bc82eff 
+，crtl+p快速匹配文件
+，F1查看快捷键
+
+
+19.微信轮播图代码
+wxml:
+<view class='slider'>
+    <swiper class="sli2" indicator-dots="true" autoplay="{{ true }}" interval="2500" duration="400" circular>
+        <swiper-item class="sli3">
+            <image src="https://m.360buyimg.com/mobilecms/s750x366_jfs/t1/47186/33/5531/32969/5d35183bE89794eb2/e227d18040d7528b.jpg!cr_1125x549_0_72!q70.jpg.dpg"  mode="aspectFill" />
+        </swiper-item>
+        <swiper-item class="sli3">
+            <image src="https://m.360buyimg.com/mobilecms/s750x366_jfs/t1/10798/34/12141/189137/5c7668a1Eef6e08ec/1b7434cc17f6306d.jpg!cr_1125x549_0_72!q70.jpg.dpg" mode="aspectFill" />
+        </swiper-item>
+        <swiper-item class="sli3">
+            <image src="https://m.360buyimg.com/mobilecms/s750x366_jfs/t1/49702/8/7084/98913/5d4a4c53E0dd98868/c57a8184a3dd1ac7.jpg!cr_1125x549_0_72!q70.jpg.dpg" mode="aspectFill" />
+        </swiper-item>
+    </swiper>
+</view>
+
+wxss:
+.slider,
+.sli2,
+.sli3,
+.sli3 image{
+  width: 100%;
+  height: 367rpx;
+  overflow: hidden;
+}
+
+
+20.app.json为全局配置，window配置项目窗口表现，pages配置路由
+
+
+21.flex默认的主轴就是x,交叉轴就是y，flex布局一般操作父元素
+
+
+22.rpx是基于750分辨率自动计算
+
+
+23.底部栏，或前部菜单栏
+"tabBar": {
+    "color": "#333",
+    "selectedColor": "#333",
+    "borderStyle": "white",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "assets/tabs/home.png",
+        "selectedIconPath": "assets/tabs/home-active.png"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "text": "消息",
+        "iconPath": "assets/tabs/message.png",
+        "selectedIconPath": "assets/tabs/message-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "个人中心",
+        "iconPath": "assets/tabs/profile.png",
+        "selectedIconPath": "assets/tabs/profile-active.png"
+      },
+      {
+        "pagePath": "pages/contact/contact",
+        "text": "大杂烩",
+        "iconPath": "assets/tabs/contact.png",
+        "selectedIconPath": "assets/tabs/contact-active.png"
+      }
+    ]
+  }
+
+
+
+24.竖着排
+flex-direction: column
+
+
+25.单页调试
+每次调试会自动跳转到要调试的页面
+
+
+26.跳页修改头部栏，改对应页面的json配置
+
+
+27.align-items: center,表示在Y轴上居中
+
+
+
+28.navigator的url属性为跳转
+<navigator class="nav-item br-ri br-bot" url="/pages/shoplist/shoplist">
+  </navigator>
+
+
+29.overflow:hidden是当元素内的内容溢出的时候使它隐藏溢出的部分，即超出部分隐藏
+
+
+
+30.操作js中的DOM，实际上是改变HTML和CSS的内容，可以先手动改HTML和CSS内容，再注入js来自动改
+
+
+31.星星评分的原理，先准备两排星星，一排全亮，一排不亮，让他们重合在一起，设置亮的那排星星的left值为50的时候，在隐藏亮的那排星星的一部分overflow:hidden，既能达到目的
+ <view class="shop-star">
+        <view class='star-after'>★★★★★</view>
+        <view class='star-before' style="width:50%;">★★★★★</view>
+    </view>
+.shop-star{
+    position: absolute;
+    right:20rpx;
+    top:20rpx;
+    
+}
+.star-after{
+    color: #e2e2e2;
+}
+.star-before{
+    color:#f19e38;
+    position: absolute;
+    left:0;
+    top:0;
+    width: 90%;
+    overflow: hidden;
+}
+
+
+
+
+32.小程序得js文件中必须要有page
+
+
+34.浏览器中ready先执行再执行onload
+
+
+35.小程序的生命周期函数本质就是事件！！
+全局Js先执行
+
+------------------全局js
+
+初始化完成，全局触发一次
+onLaunch: function () {
+
+小程序启动从后台进入到前台显示
+onshow
+
+从前台进入后台
+onhide
+
+api调用失败
+onerror
+
+----------------局部js
+onload->onshow->onready
+
+监听页面加载
+onload
+
+监听页面显示
+onshow
+
+监听页面渲染完成
+onready
+
+监听页面隐藏
+onhide
+
+监听页面卸载,一页跳到另一页
+onunload
+
+
+
+
+36.一般请求后台数据用onload页面加载的时候请求
+
+
+37.checkbox单选框
+
+
+38.小程序js有data是绑定数据用的(类似于vue)，用{{显示}}
+
+
+39.解决合法域名为题
+https://blog.csdn.net/ZHOUYANFEN_A/article/details/82563386
+
+
+40. success:(res)=> 
+箭头函数解决this.setData产生 的问题
+
+
+41.wx:for循环使用
+wx:for="{{psd}}" wx:key="aid"
+
+<view class="wxml_ul" >
+  <navigator class="nav-item br-ri br-bot" url="/pages/shoplist/shoplist" wx:for="{{psd}}" wx:key="aid">
+    <image src="https://m.360buyimg.com/mobilecms/s120x120_jfs/t1/27962/13/1445/4620/5c120b24Edd8c34fe/43ea8051bc50d939.png"></image>
+    <text>美食{{item.aid}}</text>
+  </navigator>
+
+
+42.不要换行
+white-space:nowrap
+
+
+43.省略号
+text-overflow: ellipsis
+
+
+44.onload中的options参数为单页调试传过来的参数
+如
+父传：<navigator class="nav-item br-ri br-bot" url="/pages/shoplist/shoplist?cat={{item.id}}" wx:for="{{psd}}" wx:key="id">
+
+子接：
+ wx.request({
+      url: 'https://locally.uieee.com/categories/'+options.cat+'/shops',
+      //请求参数
+       data: {
+         _limit: 15,
+         _page: 1
+       },
+
+
+
+
+
+45.隐藏字为省略号
+/* //隐藏字 */
+.ell{
+  white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+46.this.setData({
+           utu: res.data
+         })
+的作用为更改data的值，view也会改
+
+
+47.传递title属性并改变页面标题
+wx.setNavigationBarTitle({
+      title: options.title,
+    })
+
+
+
+48.onLoad: function (options) 的options值为页面与页面之间的传递值
+
+
+49.正在加载
+<view class="loadmore loading">正在加载</view>
+
+/* 正在加载 */
+.loadmore {
+    color: #888;
+    font-size: 16px;
+    line-height: 100rpx;
+    text-align: center;
+}
+
+.loadmore.loading::before {
+    content: '';
+    width: 40rpx;
+    height: 40rpx;
+    margin-top: -10rpx;
+    margin-right: 10rpx;
+    display: inline-block;
+    vertical-align: middle;
+    animation: loading 1s steps(12) infinite;
+    background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHBhdGggZmlsbD0ibm9uZSIgZD0iTTAgMGgxMDB2MTAwSDB6Ii8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjRTlFOUU5IiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgLTMwKSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iIzk4OTY5NyIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgzMCAxMDUuOTggNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjOUI5OTlBIiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKDYwIDc1Ljk4IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0EzQTFBMiIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSg5MCA2NSA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNBQkE5QUEiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoMTIwIDU4LjY2IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0IyQjJCMiIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgxNTAgNTQuMDIgNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjQkFCOEI5IiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKDE4MCA1MCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNDMkMwQzEiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTE1MCA0NS45OCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNDQkNCQ0IiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTEyMCA0MS4zNCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNEMkQyRDIiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTkwIDM1IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0RBREFEQSIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgtNjAgMjQuMDIgNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjRTJFMkUyIiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKC0zMCAtNS45OCA2NSkiLz48L3N2Zz4=) no-repeat;
+    background-size: 100%;
+}
+
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+
+
+----
+
+
+
+
+50. 上拉与下拉函数
+/**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    console.log("下拉")
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    console.log("上啦触底")
+  },
+  
+  
+  
+51.解决下拉时候的BUG问题，避免被替换掉
+方法：创建一个新数组，将原来数组放在新数组里  
+var pop = this.data.utu.concat(res.data)
+
+
+52.array.concat()，concat方法是添加数组
+
+
+53.开发者文档有很多简单的页面效果，可以看，如wx.showloading
+
+
+54.string-0，为强制转换int类型，巧妙方法
+
+
+55.html的X-Total-Count代表所有数据
+
+
+56.小程序中wxml的if和else
+<view wx:if="{{ hasp }}" class="loadmore loading">正在加载中~</view>
+<view wx:else class="loadmore">已经没有啦~~</view>
+
+
+
+57.如何解决继续下拉的时候显示没有
+max为请求数据的最大值
+iop为前台更新后的最大值
+然后判断，将判断结果改为false
+ var max = parseInt(res.header['X-Total-Count'])
+        var iop = this.data.limit*this.data.page
+        if(iop>max){
+          this.setData({
+            hasp: false
+          })
+        }
+		
+58.开启上拉事件
+{
+  "enablePullDownRefresh": true
+}
+
+
+59.停止上拉产生的延迟加载
+wx.stopPullDownRefresh()
+
+
+
+
+60.监控选择器(单选框复选框)事件方法
+js:
+radioChangeHandle(event){
+    console.log(event)
+  }
+
+wxml:
+ <view class='cell-item'>
+        <radio-group bindchange="radioChangeHandle" data-para="参数">
+            <radio color="#f60" checked value="male"></radio>男
+            <radio color="#f60" value="female"></radio>女
+            <radio color="#f60" disabled></radio>保密
+        </radio-group>
+    </view>
+	
+	
+	
+	
+	
+61.停止，否则在手机端一直存在
+wx.stopPullDowmRefresh()
+
+
+62.显示等待
+wx.showLoading({
+      title: '11',
+    })
+	
+	
+	
+63.暴露方法
+wxml:
+<wxs module="foo">
+    // 这里可以导出一个对象，这个对象可以直接在界面上使用 
+    module.exports = {
+        sum: function(a, b) {
+            return a + b;
+        }
+    };
+</wxs>
+<view> {{ foo.sum(1,2) }} </view>
+
+
+
+64.单点击事件：   bindtap="函数名"   
+事件就在js文件中
+
+
+
+65.解决事件冒泡方法
+js:
+fatherTapHandle: function () {
+    console.log("A：你为什么点击了爸爸。");
+  },
+  sonTapHandle: function (event) {
+    // console.log("B：你为什么点击了儿子。");
+    console.log("你当前点击的是第" + event.target.dataset.index + "个儿子");
+  },
+  
+ wxml:
+<view class='cell-item arrow'>
+        <view class='father' bindtap='fatherTapHandle'>
+            父亲
+            <view class='son' catchtap='sonTapHandle' data-index="1" >儿子</view>
+            <view class='son' catchtap='sonTapHandle' data-index="2" >儿子</view>
+        </view>
+    </view> 

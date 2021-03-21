@@ -1,0 +1,8 @@
+
+
+25.小球掉落动画
+
+
+26.$refs就是获取dom节点
+
+27.vue周期函数中的mounted是代表已经渲染完了虚拟DOM，即VUE中的<templete></templete>

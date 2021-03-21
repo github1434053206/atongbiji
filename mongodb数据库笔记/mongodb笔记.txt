@@ -1,0 +1,26 @@
+https://www.runoob.com/mongodb/mongodb-tutorial.html
+
+
+1.安装并配置环境变量path里面
+C:\Program Files\MongoDB\Server\3.2\bin
+
+1.启动,需要C盘创建一个/data/db
+mongod
+
+2.连接mongodb命令
+mongo
+
+3.退出
+exit
+
+4.查看数据库
+show dbs
+
+5.使用数据库
+use name
+
+6.操作当前数据库
+db
+
+7.查看版本
+mongod --version
